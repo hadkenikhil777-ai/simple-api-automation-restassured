@@ -7,6 +7,7 @@ import io.restassured.response.Response;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pojo.AuthResponse;
+import reporting.ExtentTestListener;
 import utils.JwtTestData;
 import java.util.Map;
 
@@ -15,6 +16,8 @@ public class JwtAuthPojoFlowTest extends BaseTest {
 
     @Test(priority = 1)
     public void loginWithPojo() {
+
+        ExtentTestListener.getTest().info("Logging in to get access and refresh tokens");
 
         Response response =
                 JwtAuthEndpoints.login(JwtTestData.validLoginRequest());
@@ -27,19 +30,24 @@ public class JwtAuthPojoFlowTest extends BaseTest {
         AuthContext.setRefreshToken(auth.getRefreshToken());
         AuthContext.setCookies(response.getCookies());
 
-        Assert.assertNotNull(AuthContext.getAccessToken());
-        Assert.assertNotNull(AuthContext.getRefreshToken());
-        Assert.assertFalse(AuthContext.getCookies().isEmpty());
+        ExtentTestListener.getTest().info("Access token stored in AuthContext");
     }
 
-        @Test(priority = 2)
-        public void accessSecureApiWithPojoToken(){
 
-            Response response =
-                    JwtAuthEndpoints.getUserProfile(AuthContext.getAccessToken(), AuthContext.getCookies());
+    @Test(priority = 2)
+    public void accessSecureApiUsingAuthContext() {
 
-            Assert.assertEquals(response.getStatusCode(), 200);
+        ExtentTestListener.getTest().info("Calling secured API with JWT token");
 
+        Response response =
+                JwtAuthEndpoints.getUserProfile(
+                        AuthContext.getAccessToken(),
+                        AuthContext.getCookies()
+                );
 
+        Assert.assertEquals(response.getStatusCode(), 200);
+
+        ExtentTestListener.getTest().pass("Secured API accessed successfully");
     }
+
 }

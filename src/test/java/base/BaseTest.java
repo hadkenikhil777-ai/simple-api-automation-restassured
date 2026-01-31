@@ -1,5 +1,6 @@
 package base;
 
+import context.AuthContext;
 import io.restassured.RestAssured;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeClass;
@@ -18,9 +19,9 @@ public class BaseTest {
     }
 
 
-//    @AfterSuite
-//    public void tearDown() {
-//        AuthContext.clear();
-//    }
+    @AfterSuite
+    public void tearDown() {
+        AuthContext.clear();
+    }
 
 }
