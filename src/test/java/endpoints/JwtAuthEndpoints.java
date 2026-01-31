@@ -37,4 +37,19 @@ public class JwtAuthEndpoints {
                 .get("/auth/me");
     }
 
+    public static Response refreshToken(String refreshToken, Map<String, String> cookies){
+
+        return given()
+                .header("Content-Type", "application/json")
+                .cookies(cookies)
+                .body(
+                        Map.of(
+                                "refreshToken", refreshToken,
+                                "expiresInMins", 30
+                        )
+                )
+                .when()
+                .post("/auth/refresh");
+    }
+
 }
