@@ -18,7 +18,7 @@ public class JwtAuthFlowTest extends BaseTest {
     public void loginAndGetJwtToken() {
 
         Response response = JwtAuthEndpoints.login(
-                JwtTestData.loginPayload()
+                JwtTestData.validLoginRequest()
         );
 
         Assert.assertEquals(response.getStatusCode(), 200);
@@ -41,7 +41,7 @@ public class JwtAuthFlowTest extends BaseTest {
         Assert.assertEquals(response.getStatusCode(), 200);
         Assert.assertEquals(
                 response.jsonPath().getString("username"),
-                "emilys"
+                "emily"
         );
     }
 

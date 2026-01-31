@@ -1,7 +1,6 @@
 package tests;
 
 import base.BaseTest;
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import endpoints.JwtAuthEndpoints;
 import io.restassured.response.Response;
 import org.testng.Assert;
@@ -20,7 +19,7 @@ public class JwtRefreshTokenFlowTest extends BaseTest {
     public void loginAndCaptureToken(){
 
         Response response = JwtAuthEndpoints.login(
-                JwtTestData.loginPayload()
+                JwtTestData.validLoginRequest()
         );
 
         Assert.assertEquals(response.getStatusCode(), 200);
