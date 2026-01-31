@@ -11,6 +11,6 @@ public class BaseTest {
     public void setup(){
         ResourceBundle  config = ResourceBundle.getBundle("config");
         RestAssured.baseURI =config.getString("base.url");
-
+        RestAssured.baseURI =config.getString("base.url");
     }
 }
