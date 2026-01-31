@@ -1,6 +1,7 @@
 package tests;
 
 import base.BaseTest;
+import context.AuthContext;
 import endpoints.JwtAuthEndpoints;
 import io.restassured.response.Response;
 import org.testng.Assert;
@@ -41,21 +42,26 @@ public class JwtRefreshTokenFlowTest extends BaseTest {
     }
 
     @Test(priority = 3)
-    public void refreshAccessTokenUsingRefreshToken(){
+    public void refreshAccessToken() {
 
-        Response response = JwtAuthEndpoints.refreshToken(refreshToken, cookies);
+        Response response =
+                JwtAuthEndpoints.refreshToken(
+                        AuthContext.getRefreshToken(),
+                        AuthContext.getCookies()
+                );
 
         Assert.assertEquals(response.getStatusCode(), 200);
 
-        accessToken = response.jsonPath().getString("accessToken");
-        refreshToken = response.jsonPath().getString("refreshToken");
+        AuthContext.setAccessToken(
+                response.jsonPath().getString("accessToken")
+        );
+        AuthContext.setRefreshToken(
+                response.jsonPath().getString("refreshToken")
+        );
 
-        System.out.println("New Access Token: " + accessToken);
-        System.out.println("New Regresh Token: " + refreshToken);
-
-        Assert.assertNotNull(accessToken);
-        Assert.assertNotNull(refreshToken);
+        Assert.assertNotNull(AuthContext.getAccessToken());
     }
+
 
     @Test(priority = 4)
     public void accessApiWithNewAccessToken(){
