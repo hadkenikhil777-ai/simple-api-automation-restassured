@@ -1,4 +1,4 @@
-package tests;
+package tests.user;
 
 import base.BaseTest;
 import endpoints.UserInfo;
@@ -11,7 +11,7 @@ import utils.TestData;
 
 import java.util.Map;
 
-public class CreateUser extends BaseTest {
+public class CreateUserPositiveTest extends BaseTest {
 
     @BeforeMethod
     public void init() {

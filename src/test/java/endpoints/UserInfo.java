@@ -26,6 +26,23 @@ public class UserInfo {
                 .get("/user/login");
 
     }
+    public static Response createUserUsingGet() {
+        return given()
+                .when()
+                .get("/user")
+                .then()
+                .extract().response();
+    }
+
+    public static Response createUserWithoutContentType(Map<String, Object> payload) {
+        return given()
+                .body(payload)
+                .when()
+                .post("/user")
+                .then()
+                .extract().response();
+    }
+
 
 
 }

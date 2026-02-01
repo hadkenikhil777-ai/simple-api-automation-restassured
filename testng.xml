@@ -7,7 +7,7 @@
 
     <test name="JWT Tests">
         <classes>
-            <class name="tests.JwtAuthPojoFlowTest"/>
+            <class name="tests.auth.JwtAuthPositiveTest"/>
         </classes>
     </test>
 

@@ -1,4 +1,4 @@
-package tests;
+package tests.auth;
 
 import base.BaseTest;
 import context.AuthContext;
@@ -12,7 +12,7 @@ import reporting.ReportLogger;
 import utils.JwtTestData;
 
 @Listeners(reporting.ExtentTestListener.class)
-public class JwtRefreshTokenFlowTest extends BaseTest {
+public class JwtRefreshTokenTest extends BaseTest {
 
     @BeforeMethod
     public void init() {
