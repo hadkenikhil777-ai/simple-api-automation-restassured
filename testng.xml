@@ -16,5 +16,11 @@
         <class name="tests.CreateUserNegativeTest"/>
     </classes>
 </test>
+    <test name="Product Listing">
+        <classes>
+            <class name="tests.ProductListingPositiveTest"/>
+        </classes>
+    </test>
+
 
 </suite>
