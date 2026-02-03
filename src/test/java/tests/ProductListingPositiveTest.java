@@ -137,5 +137,6 @@ public class ProductListingPositiveTest extends BaseTest {
         Assert.assertTrue(firstProductId > skip, "Pagination skip not applied correctly");
 
         ReportLogger.info("========== TEST COMPLETED ==========");
+
     }
 }
