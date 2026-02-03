@@ -1,11 +1,11 @@
-package endpoints;
+package api;
 
 import context.ResponseContext;
 import io.restassured.response.Response;
 
 import static io.restassured.RestAssured.given;
 
-public class AuthEndpoints {
+public class AuthApi {
 
     public static Response login (String username, String password)
     {

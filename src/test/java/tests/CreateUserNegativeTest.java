@@ -1,7 +1,7 @@
 package tests;
 
 import base.BaseTest;
-import endpoints.UserInfo;
+import api.UserApi;
 import io.restassured.response.Response;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Listeners;
@@ -33,7 +33,7 @@ public class CreateUserNegativeTest extends BaseTest {
         Map<String, Object> payload = TestData.createUserPayload();
         payload.remove("username");
 
-        Response response = UserInfo.createUser(payload);
+        Response response = UserApi.createUser(payload);
 
         ReportLogger.info("Response:\n" + response.asPrettyString());
 
@@ -53,7 +53,7 @@ public class CreateUserNegativeTest extends BaseTest {
         Map<String, Object> payload = TestData.createUserPayload();
         payload.remove("email");
 
-        Response response = UserInfo.createUser(payload);
+        Response response = UserApi.createUser(payload);
 
         ReportLogger.info("Response:\n" + response.asPrettyString());
 
@@ -76,7 +76,7 @@ public class CreateUserNegativeTest extends BaseTest {
         Map<String, Object> payload = TestData.createUserPayload();
         payload.put("email", "invalid-email");
 
-        Response response = UserInfo.createUser(payload);
+        Response response = UserApi.createUser(payload);
 
         ReportLogger.info("Response:\n" + response.asPrettyString());
 
@@ -95,7 +95,7 @@ public class CreateUserNegativeTest extends BaseTest {
         Map<String, Object> payload = TestData.createUserPayload();
         payload.put("phone", "abcd1234");
 
-        Response response = UserInfo.createUser(payload);
+        Response response = UserApi.createUser(payload);
 
         ReportLogger.info("Response:\n" + response.asPrettyString());
 
@@ -126,7 +126,7 @@ public class CreateUserNegativeTest extends BaseTest {
         payload.put("username", longUsername.toString());
 
 
-        Response response = UserInfo.createUser(payload);
+        Response response = UserApi.createUser(payload);
 
         ReportLogger.info("Response:\n" + response.asPrettyString());
 
@@ -148,8 +148,8 @@ public class CreateUserNegativeTest extends BaseTest {
 
         Map<String, Object> payload = TestData.createUserPayload();
 
-        Response firstResponse = UserInfo.createUser(payload);
-        Response secondResponse = UserInfo.createUser(payload);
+        Response firstResponse = UserApi.createUser(payload);
+        Response secondResponse = UserApi.createUser(payload);
 
         ReportLogger.info("Second Response:\n" + secondResponse.asPrettyString());
 
@@ -171,7 +171,7 @@ public class CreateUserNegativeTest extends BaseTest {
 
         Map<String, Object> payload = new HashMap<>();
 
-        Response response = UserInfo.createUser(payload);
+        Response response = UserApi.createUser(payload);
 
         ReportLogger.info("Response:\n" + response.asPrettyString());
 
@@ -192,7 +192,7 @@ public class CreateUserNegativeTest extends BaseTest {
 
         ReportLogger.info("Calling create user API using GET method");
 
-        Response response = UserInfo.createUserUsingGet();
+        Response response = UserApi.createUserUsingGet();
 
         ReportLogger.info("Response:\n" + response.asPrettyString());
 
@@ -213,7 +213,7 @@ public class CreateUserNegativeTest extends BaseTest {
         ReportLogger.info("Creating user without Content-Type header");
 
         Response response =
-                UserInfo.createUserWithoutContentType(
+                UserApi.createUserWithoutContentType(
                         TestData.createUserPayload()
                 );
 

@@ -2,7 +2,7 @@ package tests;
 
 import base.BaseTest;
 import context.AuthContext;
-import endpoints.JwtAuthEndpoint;
+import api.JwtAuthApi;
 import io.restassured.response.Response;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
@@ -26,7 +26,7 @@ public class JwtAuthPositiveTest extends BaseTest {
         ReportLogger.info("Starting login using POJO-based request");
 
         Response response =
-                JwtAuthEndpoint.login(JwtTestData.validLoginRequest());
+                JwtAuthApi.login(JwtTestData.validLoginRequest());
 
         ReportLogger.info("Login API status: " + response.getStatusCode());
         ReportLogger.info("Login API response:\n" + response.asPrettyString());
@@ -54,7 +54,7 @@ public class JwtAuthPositiveTest extends BaseTest {
         ReportLogger.info("Calling secured API using AuthContext");
 
         Response response =
-                JwtAuthEndpoint.getUserProfile(
+                JwtAuthApi.getUserProfile(
                         AuthContext.getAccessToken(),
                         AuthContext.getCookies()
                 );

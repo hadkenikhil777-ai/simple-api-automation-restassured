@@ -45,10 +45,10 @@ simple-api-automation-restassured/
 │   │   └── ApiConfig.java             # API configuration management
 │   ├── context/
 │   │   └── AuthContext.java           # Authentication context for tokens
-│   ├── endpoints/
-│   │   ├── AuthEndpoints.java         # Auth-related endpoints
-│   │   ├── JwtAuthEndpoint.java       # JWT authentication endpoints
-│   │   └── UserInfo.java              # User information endpoints
+│   ├── api/
+│   │   ├── AuthApi.java               # Auth-related endpoints
+│   │   ├── JwtAuthApi.java            # JWT authentication endpoints
+│   │   └── UserApi.java               # User information endpoints
 │   ├── pojo/
 │   │   ├── AuthResponse.java          # Authentication response model
 │   │   ├── LoginRequest.java          # Login request model
@@ -220,7 +220,7 @@ The project includes GitHub Actions workflow (`.github/workflows/api-tests.yml`)
 public void loginWithPojo() {
     ReportLogger.info("Starting login using POJO-based request");
     
-    Response response = JwtAuthEndpoint.login(JwtTestData.validLoginRequest());
+Response response = JwtAuthApi.login(JwtTestData.validLoginRequest());
     
     Assert.assertEquals(response.getStatusCode(), 200);
     

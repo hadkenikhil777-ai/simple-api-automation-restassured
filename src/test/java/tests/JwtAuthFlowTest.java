@@ -1,7 +1,7 @@
 package tests;
 
 import base.BaseTest;
-import endpoints.JwtAuthEndpoint;
+import api.JwtAuthApi;
 import io.restassured.response.Response;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
@@ -31,7 +31,7 @@ public class JwtAuthFlowTest extends BaseTest {
 
         ReportLogger.info("Calling Login API");
 
-        Response response = JwtAuthEndpoint.login(
+        Response response = JwtAuthApi.login(
                 JwtTestData.validLoginRequest()
         );
 
@@ -60,7 +60,7 @@ public class JwtAuthFlowTest extends BaseTest {
         ReportLogger.info("Accessing secured API using valid JWT and cookies");
 
         Response response =
-                JwtAuthEndpoint.getUserProfile(accessToken, authCookies);
+                JwtAuthApi.getUserProfile(accessToken, authCookies);
 
         ReportLogger.info("Secured API Status Code: " + response.getStatusCode());
         ReportLogger.info("Secured API Response:\n" + response.asPrettyString());
@@ -81,7 +81,7 @@ public class JwtAuthFlowTest extends BaseTest {
         ReportLogger.info("Accessing secured API with INVALID JWT and NO cookies");
 
         Response response =
-                JwtAuthEndpoint.getUserProfileWithTokenOnly("invalid.token.value");
+                JwtAuthApi.getUserProfileWithTokenOnly("invalid.token.value");
 
         int statusCode = response.getStatusCode();
 

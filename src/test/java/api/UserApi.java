@@ -1,4 +1,4 @@
-package endpoints;
+package api;
 
 import context.ResponseContext;
 import io.restassured.response.Response;
@@ -8,7 +8,7 @@ import java.util.Map;
 import static io.restassured.RestAssured.given;
 import static io.restassured.RestAssured.patch;
 
-public class UserInfo {
+public class UserApi {
 
     public static Response createUser(Map<String, Object> payload){
         Response response = given()

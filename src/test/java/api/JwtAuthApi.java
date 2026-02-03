@@ -1,4 +1,4 @@
-package endpoints;
+package api;
 
 import context.ResponseContext;
 import io.restassured.http.ContentType;
@@ -11,7 +11,7 @@ import java.util.HashMap;
 
 import static io.restassured.RestAssured.given;
 
-public class JwtAuthEndpoint {
+public class JwtAuthApi {
 
     private static final String LOGIN = "/auth/login";
     private static final String PROFILE = "/auth/me";

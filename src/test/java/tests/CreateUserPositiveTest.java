@@ -1,7 +1,7 @@
 package tests;
 
 import base.BaseTest;
-import endpoints.UserInfo;
+import api.UserApi;
 import io.restassured.response.Response;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -29,7 +29,7 @@ public class CreateUserPositiveTest extends BaseTest {
 
         ReportLogger.info("Calling Create User API");
 
-        Response response = UserInfo.createUser(payload);
+        Response response = UserApi.createUser(payload);
 
         ReportLogger.info("Response Status: " + response.getStatusCode());
         ReportLogger.info("Response Body:\n" + response.asPrettyString());

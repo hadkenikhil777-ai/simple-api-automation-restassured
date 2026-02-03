@@ -1,7 +1,7 @@
 package tests;
 
 import base.BaseTest;
-import endpoints.JwtAuthEndpoint;
+import api.JwtAuthApi;
 import io.restassured.response.Response;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
@@ -34,7 +34,7 @@ public class JwtAuthNegativeTest extends BaseTest {
                 .expiresInMins(30)
                 .build();
 
-        Response response = JwtAuthEndpoint.login(request);
+        Response response = JwtAuthApi.login(request);
 
         ReportLogger.info("Response:\n" + response.asPrettyString());
 
@@ -57,7 +57,7 @@ public class JwtAuthNegativeTest extends BaseTest {
                 .build();
 
 
-        Response response = JwtAuthEndpoint.login(request);
+        Response response = JwtAuthApi.login(request);
 
         ReportLogger.info("Response:\n" + response.asPrettyString());
 
@@ -78,7 +78,7 @@ public class JwtAuthNegativeTest extends BaseTest {
                 .build();
 
 
-        Response response = JwtAuthEndpoint.login(request);
+        Response response = JwtAuthApi.login(request);
 
         ReportLogger.info("Response:\n" + response.asPrettyString());
 
@@ -99,7 +99,7 @@ public class JwtAuthNegativeTest extends BaseTest {
                 .build();
 
 
-        Response response = JwtAuthEndpoint.login(request);
+        Response response = JwtAuthApi.login(request);
 
         ReportLogger.info("Response:\n" + response.asPrettyString());
 
@@ -115,7 +115,7 @@ public class JwtAuthNegativeTest extends BaseTest {
 
         LoginRequest request = new LoginRequest();
 
-        Response response = JwtAuthEndpoint.login(request);
+        Response response = JwtAuthApi.login(request);
 
         ReportLogger.info("Response:\n" + response.asPrettyString());
 
@@ -131,7 +131,7 @@ public class JwtAuthNegativeTest extends BaseTest {
         request.setUsername("' OR 1=1 --");
 
 
-        Response response = JwtAuthEndpoint.login(request);
+        Response response = JwtAuthApi.login(request);
 
         ReportLogger.info("Response:\n" + response.asPrettyString());
 
@@ -146,7 +146,7 @@ public class JwtAuthNegativeTest extends BaseTest {
         LoginRequest request = JwtTestData.validLoginRequest();
         request.setUsername("<script>alert(1)</script>");
 
-        Response response = JwtAuthEndpoint.login(request);
+        Response response = JwtAuthApi.login(request);
 
         ReportLogger.info("Response:\n" + response.asPrettyString());
 
@@ -163,7 +163,7 @@ public class JwtAuthNegativeTest extends BaseTest {
         ReportLogger.info("Access API with random string token");
 
         Response response =
-                JwtAuthEndpoint.getUserProfileWithTokenOnly("random-string");
+                JwtAuthApi.getUserProfileWithTokenOnly("random-string");
 
         ReportLogger.info("Response:\n" + response.asPrettyString());
 
@@ -183,7 +183,7 @@ public class JwtAuthNegativeTest extends BaseTest {
                 "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.invalid.payload";
 
         Response response =
-                JwtAuthEndpoint.getUserProfileWithTokenOnly(corruptedJwt);
+                JwtAuthApi.getUserProfileWithTokenOnly(corruptedJwt);
 
         ReportLogger.info("Response:\n" + response.asPrettyString());
 
@@ -203,7 +203,7 @@ public class JwtAuthNegativeTest extends BaseTest {
         ReportLogger.info("Refreshing with invalid refresh token");
 
         Response response =
-                JwtAuthEndpoint.refreshToken(
+                JwtAuthApi.refreshToken(
                         "invalid.refresh.token",
                         null
                 );
@@ -223,7 +223,7 @@ public class JwtAuthNegativeTest extends BaseTest {
         ReportLogger.info("Refreshing without refresh token");
 
         Response response =
-                JwtAuthEndpoint.refreshToken(null, null);
+                JwtAuthApi.refreshToken(null, null);
 
         ReportLogger.info("Response:\n" + response.asPrettyString());
 
