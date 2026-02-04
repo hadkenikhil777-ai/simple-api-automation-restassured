@@ -11,6 +11,7 @@ import utils.TestData;
 
 import java.util.Map;
 
+@Test(groups = {"Create User"})
 public class CreateUserPositiveTest extends BaseTest {
 
     @BeforeMethod

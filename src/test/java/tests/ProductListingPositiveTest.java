@@ -13,6 +13,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+@Test(groups = {"Product Listing"})
 public class ProductListingPositiveTest extends BaseTest {
 
     @BeforeMethod
