@@ -29,6 +29,7 @@
         <classes>
             <class name="tests.ProductListingPositiveTest"/>
             <class name="tests.ProductDataValidationTest"/>
+            <class name="tests.ProductCategoryFilteringTest"/>
         </classes>
     </test>
 

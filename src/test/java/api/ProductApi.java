@@ -26,4 +26,11 @@ public class ProductApi {
                 .when()
                 .get("/products");
     }
+
+    public static Response getProductsByCategory(String category) {
+        return given()
+                .when()
+                .get("/products/category/" + category);
+    }
+
 }
