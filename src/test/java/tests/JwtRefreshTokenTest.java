@@ -12,6 +12,7 @@ import reporting.ReportLogger;
 import utils.JwtTestData;
 
 @Listeners(reporting.ExtentTestListener.class)
+@Test(groups = {"JWT Fresh Token"})
 public class JwtRefreshTokenTest extends BaseTest {
 
     @BeforeMethod

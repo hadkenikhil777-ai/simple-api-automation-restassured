@@ -13,8 +13,26 @@ public class ExtentTestListener implements ITestListener {
 
     @Override
     public void onTestStart(ITestResult result) {
-        ExtentTest extentTest =
-                extent.createTest(result.getMethod().getMethodName());
+        String className = result.getTestClass().getRealClass().getSimpleName();
+        String methodName = result.getMethod().getMethodName();
+        String description = result.getMethod().getDescription();
+
+        String testName = className + " :: " + methodName;
+        ExtentTest extentTest = description == null
+                ? extent.createTest(testName)
+                : extent.createTest(testName, description);
+
+        String[] groups = result.getMethod().getGroups();
+        if (groups != null && groups.length > 0) {
+            for (String group : groups) {
+                extentTest.assignCategory(group);
+            }
+            extentTest.info("Groups: " + String.join(", ", groups));
+        }
+
+        extentTest.info("Suite: " + result.getTestContext().getSuite().getName());
+        extentTest.info("Test: " + result.getTestContext().getName());
+        extentTest.info("Class: " + result.getTestClass().getName());
         test.set(extentTest);
     }
 
@@ -29,11 +47,11 @@ public class ExtentTestListener implements ITestListener {
 
         Response lastResponse = ResponseContext.getLastResponse();
         if (lastResponse != null) {
-            test.get().fail("Last response status: " + lastResponse.getStatusCode());
-            test.get().fail("Last response headers: " + lastResponse.getHeaders());
-            test.get().fail("Last response body:\n" + lastResponse.asString());
+            test.get().info("Last response status: " + lastResponse.getStatusCode());
+            test.get().info("Last response headers: " + lastResponse.getHeaders());
+            test.get().info("Last response body:\n" + lastResponse.asString());
         } else {
-            test.get().fail("No response captured for this test.");
+            test.get().info("No response captured for this test.");
         }
     }
 

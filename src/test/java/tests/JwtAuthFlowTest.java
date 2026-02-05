@@ -13,6 +13,7 @@ import utils.JwtTestData;
 import java.util.Map;
 
 @Listeners(reporting.ExtentTestListener.class)
+@Test(groups = {"JWT Auth"})
 public class JwtAuthFlowTest extends BaseTest {
 
     private static String accessToken;

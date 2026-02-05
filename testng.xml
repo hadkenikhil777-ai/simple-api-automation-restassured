@@ -1,5 +1,14 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
 <suite name="API Automation Suite">
+    <groups>
+        <run>
+            <include name="Create User"/>
+            <include name="JWT Auth"/>
+            <include name="JWT Fresh Token"/>
+            <include name="Product data"/>
+            <include name="Product Listing"/>
+        </run>
+    </groups>
 
 <test name="JWT Tests">
     <classes>
@@ -20,6 +29,7 @@
         <classes>
             <class name="tests.ProductListingPositiveTest"/>
             <class name="tests.ProductDataValidationTest"/>
+            <class name="tests.ProductCategoryFilteringTest"/>
         </classes>
     </test>
 

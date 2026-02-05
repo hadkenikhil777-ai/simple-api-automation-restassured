@@ -13,6 +13,7 @@ import reporting.ReportLogger;
 import utils.JwtTestData;
 
 @Listeners(reporting.ExtentTestListener.class)
+@Test(groups = {"JWT Auth"})
 public class JwtAuthPositiveTest extends BaseTest {
 
     @BeforeMethod

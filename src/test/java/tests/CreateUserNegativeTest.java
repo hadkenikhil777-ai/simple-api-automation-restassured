@@ -14,6 +14,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Listeners(reporting.ExtentTestListener.class)
+@Test(groups = {"Create User"})
 public class CreateUserNegativeTest extends BaseTest {
 
     @BeforeMethod

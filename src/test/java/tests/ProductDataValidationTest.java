@@ -12,6 +12,7 @@ import utils.AssertUtils;
 import java.util.List;
 import java.util.Map;
 
+@Test(groups = {"Product data"})
 public class ProductDataValidationTest extends BaseTest {
 
     @BeforeMethod
