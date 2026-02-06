@@ -74,4 +74,19 @@ public class AssertUtils {
             Assert.fail(context + " mismatch");
         }
     }
+
+    public static void assertResponseTimeLessThan(
+            long responseTimeMs,
+            long maxMs,
+            String context
+    ) {
+        if (responseTimeMs < maxMs) {
+            ReportLogger.pass(context + " within SLA (" + responseTimeMs + " ms)");
+        } else {
+            ReportLogger.fail(
+                    context + " exceeded SLA (" + responseTimeMs + " ms, limit " + maxMs + " ms)"
+            );
+            Assert.fail(context + " response time too high");
+        }
+    }
 }

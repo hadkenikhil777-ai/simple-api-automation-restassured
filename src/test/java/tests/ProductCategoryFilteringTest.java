@@ -10,7 +10,7 @@ import reporting.ReportLogger;
 
 import java.util.List;
 import java.util.Map;
-@Test(groups = {"Product Data"})
+@Test(groups = {"Product Listing"})
 public class ProductCategoryFilteringTest extends BaseTest {
 
     @BeforeMethod
