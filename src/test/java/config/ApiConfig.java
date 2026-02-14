@@ -18,15 +18,23 @@ public class ApiConfig {
 
         switch (apiType) {
             case PETSTORE:
-                RestAssured.baseURI = config.getString("petstore.base.url");
+                RestAssured.baseURI = getRequiredUrl("petstore.base.url");
                 break;
 
             case DUMMYJSON:
-                RestAssured.baseURI = config.getString("dummyjson.base.url");
+                RestAssured.baseURI = getRequiredUrl("dummyjson.base.url");
                 break;
 
             default:
-                throw new RuntimeException("Unsupported API type");
+                throw new IllegalArgumentException("Unsupported API type: " + apiType);
         }
+    }
+
+    private static String getRequiredUrl(String key) {
+        String url = config.getString(key);
+        if (url == null || url.trim().isEmpty()) {
+            throw new IllegalStateException("Missing or empty config value for key: " + key);
+        }
+        return url.trim();
     }
 }
